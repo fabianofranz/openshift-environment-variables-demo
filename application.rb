@@ -10,13 +10,12 @@ end
 
 get '/send' do
   if 'PRODUCTION' == ENV['ENVIRONMENT']
-    to = 'fabianofranz@gmail.com'
     Pony.mail({
-      :to => to,
-      :from => ENV['SMTP_USERNAME'],
       :subject => "From Awesomeness Demo #{Time.now}",
       :body => 'Hey there',
       :via => :smtp,
+      :to => ENV['MAIL_TO'],
+      :from => ENV['MAIL_FROM'],
       :via_options => {
         :address        => ENV['SMTP_HOST'],
         :port           => ENV['SMTP_PORT'],
