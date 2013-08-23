@@ -30,7 +30,7 @@ get '/send' do
     })
     "Sent (really) to #{to}!"
   else
-    "Sent (kind of)!"
+    "Sent (kind of) #{ENV['ENVIRONMENT']}!"
   end
 end
 
