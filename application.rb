@@ -21,7 +21,9 @@ get '/send' do
       :user_name      => ENV['SMTP_USERNAME'],
       :password       => ENV['SMTP_PASSWORD'],
       :authentication => :plain, # :plain, :login, :cram_md5, no auth by default
-      :domain         => "localhost.localdomain" # the HELO domain provided by the client to the server
+      :domain         => "localhost.localdomain", # the HELO domain provided by the client to the server
+      :openssl_verify_mode => OpenSSL::SSL::VERIFY_NONE,
+      :enable_starttls_auto => true
     }
   })
   "Sent! #{ENV['SMTP_HOST']}"
