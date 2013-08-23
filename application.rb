@@ -26,7 +26,7 @@ get '/send' do
   })
   "Sent! #{ENV['SMTP_HOST']}"
   rescue Exception => e
-    e.inspect
+    return "Exception #{e.inspect}"
   end
 end
 
