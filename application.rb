@@ -1,12 +1,13 @@
 require 'rubygems'
 require 'sinatra'
+require 'pony'
 
 get '/' do
-  "Hey there.
-    <br /><br />Wny not to <a href=\"/mail\">send some emails</a>?"
+  "Hey there!
+    <br /><br />Why not to <a href=\"/send\">send some emails</a>?"
 end
 
-get '/mailer' do
+get '/send' do
   Pony.mail({
     :to => 'ffranz@redhat.com',
     :subject => "From Awesomeness Demo #{Time.now}",
@@ -21,6 +22,7 @@ get '/mailer' do
       :domain         => "localhost.localdomain" # the HELO domain provided by the client to the server
     }
   })
+  "Sent! #{ENV['SMTP_HOST']}" 
 end
 
 get '/agent' do
