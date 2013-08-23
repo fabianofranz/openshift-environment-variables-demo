@@ -4,12 +4,14 @@ require 'pony'
 
 get '/' do
   "Hey there!
-    <br /><br />Why not to <a href=\"/send\">send some emails</a>?"
+    <br /><br />It's a good day to <a href=\"/send\">send some emails</a>."
 end
 
 get '/send' do
+  begin
   Pony.mail({
     :to => 'ffranz@redhat.com',
+    :from => ENV['SMTP_USERNAME'],
     :subject => "From Awesomeness Demo #{Time.now}",
     :body => 'Hey there',
     :via => :smtp,
@@ -22,7 +24,10 @@ get '/send' do
       :domain         => "localhost.localdomain" # the HELO domain provided by the client to the server
     }
   })
-  "Sent! #{ENV['SMTP_HOST']}" 
+  "Sent! #{ENV['SMTP_HOST']}"
+  rescue Exception => e
+    e.inspect
+  end
 end
 
 get '/agent' do
