@@ -27,7 +27,7 @@ get '/send' do
         :enable_starttls_auto => true
       }
     })
-    "Sent (really) to #{to}! <a href=\"/\">Back</a>"
+    "Sent (really) to #{ENV['MAIL_TO']}! <a href=\"/\">Back</a>"
   else
     "Sent (kind of)! <a href=\"/\">Back</a>"
   end
