@@ -26,7 +26,7 @@ get '/send' do
   })
   "Sent! #{ENV['SMTP_HOST']}"
   rescue Exception => e
-    return "Exception #{e.backtrace.join(\"\n\")}"
+    return "Exception #{e.message} #{e.backtrace.to_s}"
   end
 end
 
